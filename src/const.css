@@ -1,0 +1,65 @@
+:root {
+  font-size: 16px;
+
+  --space-unit: 1rem;
+  --space-xxxxs: calc(0.125 * var(--space-unit));
+  --space-xxxs: calc(0.25 * var(--space-unit));
+  --space-xxs: calc(0.375 * var(--space-unit));
+  --space-xs: calc(0.5 * var(--space-unit));
+  --space-sm: calc(0.75 * var(--space-unit));
+  --space-md: calc(1.25 * var(--space-unit));
+  --space-lg: calc(2 * var(--space-unit));
+  --space-xl: calc(3.25 * var(--space-unit));
+  --space-xxl: calc(5.25 * var(--space-unit));
+  --space-xxxl: calc(8.5 * var(--space-unit));
+  --space-xxxxl: calc(13.75 * var(--space-unit));
+  --space-default: var(--space-md);
+
+  --font-primary: 'Gotham';
+  --font-secondary: sans-serif;
+
+  --text-base-size: 1rem;
+  --text-scale-ratio: 1.2;
+  --text-unit: var(--text-base-size);
+  --text-size-xs: calc(
+    (var(--text-unit) / var(--text-scale-ratio)) / var(--text-scale-ratio)
+  );
+  --text-size-sm: calc(var(--text-size-xs) * var(--text-scale-ratio));
+  --text-size-md: calc(
+    var(--text-size-sm) * var(--text-scale-ratio) * var(--text-scale-ratio)
+  );
+  --text-size-lg: calc(var(--text-size-md) * var(--text-scale-ratio));
+  --text-size-xl: calc(var(--text-size-lg) * var(--text-scale-ratio));
+  --text-size-xxl: calc(var(--text-size-xl) * var(--text-scale-ratio));
+  --text-size-xxxl: calc(var(--text-size-xxl) * var(--text-scale-ratio));
+  --text-size-xxxxl: calc(var(--text-size-xxxl) * var(--text-scale-ratio));
+  --text-size-default: var(--text-size-md);
+
+  --color-generic-blue-dark: #0a285f;
+  --color-generic-blue-light: #0075be;
+  --color-generic-yellow-dark: #d5a100;
+  --color-generic-yellow-light: #ffcc00;
+
+  --color-background-default: #ffffff;
+  /* --color-background-hover: #f5f5ee; */
+  --color-background-element: #f8f9f5;
+  --color-background-selected: #effcd5;
+  --color-background-disabled: #d3d3d3;
+
+  --color-text-default: #3b3131;
+  --color-text-highlighted: #1b1b1b;
+  --color-text-selected: #0c0404;
+
+  --color-text-success: #4dad5b;
+  --color-text-info: #1847d7;
+  --color-text-warning: #ee6b2f;
+  --color-text-error: #ce2211;
+
+  --border-radius-tiny: 4px;
+  --border-radius-small: 8px;
+  --border-radius-regular: 14px;
+  --border-radius-big: 26px;
+  --border-radius-circle: 1000px;
+  --border-radius-square: 50%;
+  --border-radius-strange: 50% 20% / 10% 40%;
+}
