@@ -41,6 +41,8 @@
   --color-generic-yellow-light: #ffcc00;
 
   --color-background-default: #ffffff;
+  --color-background-header: #d0d0d0;
+  --color-link-a-default: #ffffff;
   /* --color-background-hover: #f5f5ee; */
   --color-background-element: #f8f9f5;
   --color-background-selected: #effcd5;
