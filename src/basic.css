@@ -1,35 +1,39 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(
-    --color-background-header
-  ); /* in future change to "--color-background-default" */
+  background-color: var(--color-background-default);
   font-family: var(--font-primary), var(--font-secondary);
   font-size: var(--text-size-default);
+  display: flex;
+  flex-direction: column;
 }
 
 a {
   color: var(--color-text-highlighted);
   text-decoration: none;
 }
+
 .header {
   display: flex;
   justify-content: space-between;
-  padding: var(--space-md);
-  background: var(--color-background-default);
-  color: var(--color-text-highlighted);
+  background: var(--color-generic-blue-light);
   font-family: var(--font-primary);
   font-size: var(--text-size-md);
 }
+
+.header a {
+  color: var(--color-text-on-dark-background);
+}
+
 .header__section {
   display: flex;
   align-items: center;
 }
+
 .header__item {
   padding: var(--space-sm) var(--space-md);
-  font-size: var(--text-size-lg);
-  margin-left: 5px;
 }
+
 .header__buttons {
   justify-content: space-between;
 }
@@ -39,13 +43,11 @@ a {
 }
 
 .header__picture {
-  width: 250px;
+  width: 125px;
 }
 
-.fancy-list {
-  list-style: none;
-  padding: var(--space-sm);
-  margin: 0;
+.header__github {
+  width: 55px;
 }
 
 .header__items {
@@ -63,31 +65,28 @@ a {
   display: inline-flex;
   justify-content: space-between;
   position: absolute;
-
   overflow: hidden;
   width: 0;
-
   white-space: pre;
-  color: rgb(0, 0, 0);
-  transition: width 500ms;
+  transition: width 700ms;
   border-bottom: 1px solid;
+  border-color: var(--color-generic-yellow-light);
   padding-bottom: var(--space-xs);
 }
 
 .textwrapper a {
-  color: inherit;
+  color: var(--color-generic-yellow-light);
 }
 
 /* this one need to delete */
 .smthingforex {
-  background-color: var(--color-background-header);
   height: 900px;
 }
 
 footer {
   width: 100%;
   height: auto;
-  background: var(--color-background-default);
+  background: var(--color-generic-yellow-light);
   margin: 0 auto;
   text-align: center;
 }
@@ -95,17 +94,18 @@ footer {
 footer a {
   margin-left: var(--space-xl);
 }
+
 .footer__social {
   width: 100%;
-  height: auto;
-  margin: 0 auto;
-  position: relative;
   display: inline-flex;
   padding-top: var(--space-xxxxs);
 }
+
 .footer__picture {
   width: 350px;
+  margin: var(--space-lg);
 }
+
 /* */
 footer ul {
   display: flex;
@@ -180,5 +180,6 @@ footer ul li:nth-child(4) a:before {
 }
 
 .footer__mail {
-  padding: var(--space-sm) var(--space-sm);
+  padding: var(--space-sm);
+  margin: var(--space-sm);
 }

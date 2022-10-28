@@ -51,6 +51,7 @@
   --color-text-default: #3b3131;
   --color-text-highlighted: #1b1b1b;
   --color-text-selected: #0c0404;
+  --color-text-on-dark-background: #ffffff;
 
   --color-text-success: #4dad5b;
   --color-text-info: #1847d7;
