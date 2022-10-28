@@ -1,42 +1,61 @@
-container {
+.search {
+  --search-border-radius: var(--border-radius-regular);
+  --search-color: var(--color-generic-blue-light);
+  --search-border-size: 3px;
+  --search-height: 36px;
+  display: flex;
+  margin: var(--space-md);
 }
 
-button {
-  border-radius: var(--border-radius-regular);
+.search * {
+  height: var(--search-height);
 }
 
-button {
-  appearance: none;
-  background-color: var(--color-generic-blue-light);
-  border-radius: 40em;
-  border-style: none;
-  box-shadow: #adcfff 0 -12px 6px inset;
-  box-sizing: ;
-  color: #000000;
-  cursor: pointer;
-  display: inline-block;
-  font-family: -apple-system, sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: -0.24px;
-  margin: 0;
+.searchTerm {
+  width: 400px;
+  border: var(--search-border-size) solid var(--search-color);
+  border-right: none;
+  padding: var(--space-sm);
+  border-radius: var(--search-border-radius) 0 0 var(--search-border-radius);
   outline: none;
-  padding: 1rem 1.3rem;
-  quotes: auto;
+  color: var(--search-color);
+  color: var(--color-text-default);
+}
+
+.searchTerm:focus {
+  color: var(--color-text-highlighted);
+}
+
+.searchButton {
+  width: 40px;
+  border: var(--search-border-size) solid var(--search-color);
+  background: var(--search-color);
   text-align: center;
-  text-decoration: none;
-  transition: all 0.15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+  border-radius: 0 var(--search-border-radius) var(--search-border-radius) 0;
+  cursor: pointer;
+  font-size: var(--text-size-md);
 }
 
-button:hover {
-  background-color: #ffc229;
-  box-shadow: #ff6314 0 -6px 8px inset;
-  transform: scale(1.125);
+.searchButton img {
+  filter: brightness(0) invert(1);
+  height: calc(var(--search-height) - var(--search-border-size) * 2);
+  padding: var(--space-xxs);
 }
 
-button:active {
-  transform: scale(1.025);
+.randomSearchButton {
+  margin-left: var(--space-md);
+  background: none;
+  border: none;
+  height: calc(var(--search-height) - var(--search-border-size) * 2);
+  transition: all 0.5s;
+}
+
+.randomSearchButton:hover {
+  transform: scale(1.3) rotate(360deg);
+  cursor: pointer;
+}
+
+.randomSearchButton img:active,
+.searchButton img:active {
+  transform: scale(1.2);
 }

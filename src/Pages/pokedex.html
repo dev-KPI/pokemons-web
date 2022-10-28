@@ -11,41 +11,49 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Pokedex</h1>
-      <input
-        class="input"
-        type="text"
-        id="input"
-        placeholder="Pokemon's id or name..."
-      />
-      <button id="go" class="pokedex-button" onclick="submit()">Go</button>
-      <button id="random" class="pokedex-button" onclick="random()">
-        Random Pokémon
-      </button>
-      <button id="clear" class="button-clear">x</button>
-      <div class="pokedex-screen">
-        <img class="pokedex-img" id="img" src="" alt="" />
+    <header>
+      <div class="header">
+        <div class="header__section">
+          <div class="header__item headerlogo">
+            <img src="/src/Icons/Pokémon_logo.png" class="header__picture" />
+          </div>
+          <div class="header__items">
+            <span class="textwrapper"><a href="#">Home</a></span
+            ><a href="#">Home</a>
+          </div>
+          <div class="header__items">
+            <span class="textwrapper"><a href="#">Pokédex</a></span
+            ><a href="#">Pokédex</a>
+          </div>
+          <div class="header__items">
+            <span class="textwrapper"><a href="#">CP Calculator</a></span
+            ><a href="#">CP Calculator</a>
+          </div>
+          <div class="header__items">
+            <span class="textwrapper"><a href="#">Contact Us</a></span
+            ><a href="#">Contact Us</a>
+          </div>
+        </div>
+        <div class="header__item">
+          <a href="#"
+            ><img class="header__github" src="/src/Icons/Octocat.png"
+          /></a>
+        </div>
       </div>
-
-      <!-- <div class="info">
-        <div id="data1" class="pokedex-data">
-          <p class="pokedex-data-text">
-            <span id="text_id"></span> <span id="text_name"></span>
-          </p>
-        </div>
-        <p class="pokedex-data-text ability">
-          Ability: <span id="text_ability"></span>
-        </p>
-        <br />
-        <p class="pokedex-data-text ability">Type(s):</p>
-        <div id="data2" class="pokedex-data">
-          <p class="pokedex-data-text">
-            <span id="text_type"> </span><span class="space"></span
-            ><span id="text_type2"></span>
-          </p>
-        </div>
-      </div> -->
+    </header>
+    <h1>Pokedex</h1>
+    <div class="search">
+      <input
+        type="text"
+        class="searchTerm"
+        placeholder="Search by id or name..."
+      />
+      <button type="submit" class="searchButton">
+        <img src="../Icons/search.png" alt="search" />
+      </button>
+      <button type="submit" class="randomSearchButton" title="Random Pokemon">
+        <img src="../Icons/random.png" alt="search" />
+      </button>
     </div>
   </body>
 </html>
