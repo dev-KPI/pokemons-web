@@ -97,6 +97,7 @@ footer {
   height: auto;
   background: var(--color-generic-yellow-light);
   margin: 0 auto;
+  justify-self: flex-end;
   text-align: center;
 }
 
