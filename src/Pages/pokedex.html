@@ -41,19 +41,38 @@
         </div>
       </div>
     </header>
-    <h1>Pokedex</h1>
-    <div class="search">
-      <input
-        type="text"
-        class="searchTerm"
-        placeholder="Search by id or name..."
-      />
-      <button type="submit" class="searchButton">
-        <img src="../Icons/search.png" alt="search" />
-      </button>
-      <button type="submit" class="randomSearchButton" title="Random Pokemon">
-        <img src="../Icons/random.png" alt="search" />
-      </button>
+    <div class="container">
+      <h1>Pokédex</h1>
+      <p class="page__description">
+        Pokédex is an electronic device created and designed to catalog and
+        provide information regarding the various species of Pokémon featured in
+        the Pokémon video game, anime and manga series.
+        <b>Let's search it!</b>
+      </p>
+      <div class="search">
+        <input
+          id="search__input"
+          type="text"
+          class="search__line"
+          placeholder="Search by id or name..."
+        />
+        <button type="submit" class="search__button" onclick="search()">
+          <img src="../Icons/search.png" alt="search" />
+        </button>
+        <button
+          type="submit"
+          class="search__random"
+          title="Random Pokemon"
+          onclick="randomSearch()"
+        >
+          <img src="../Icons/random.png" alt="search" />
+        </button>
+      </div>
+      <div class="pokemon">
+        <h2 class="pokemon__name"></h2>
+        <img id="pokemon__picture" class="pokemon__picture" />
+      </div>
     </div>
   </body>
+  <script src="../Modules/pokedex.js"></script>
 </html>
