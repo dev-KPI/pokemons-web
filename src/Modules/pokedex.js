@@ -27,7 +27,9 @@
     shape: document.getElementById('pokemonShape'),
     type: document.getElementsByClassName('pokemon__type')[0],
     stats: {
-      hp: document.getElementById('hp_percents'),
+      hp: document.getElementById('hpPercents'),
+      attack: document.getElementById('attackPercents'),
+      defense: document.getElementById('defensePercents'),
     },
   };
 
@@ -88,8 +90,28 @@
     });
   };
 
+  const statsCssProperties = document.getElementsByClassName('stats')[0];
+
+  const calcOffset = (percents) => {
+    if (percents >= 100) return 0;
+    const computedStyle = getComputedStyle(statsCssProperties);
+    const dashArray = computedStyle.getPropertyValue('--stroke-dash-array');
+    return (+dashArray - (+dashArray / 100) * percents).toString();
+  };
+
   const updateStats = (pokemonFetchedInfo) => {
-    target.stats.hp.textContent = pokemonFetchedInfo.stats[0].base_stat;
+    const fetchedStats = pokemonFetchedInfo.stats;
+    for (const item of fetchedStats) {
+      const name = item.stat.name;
+      const percents = item.base_stat;
+      if (target.stats[name]) {
+        target.stats[name].textContent = percents;
+        statsCssProperties.style.setProperty(
+          `--dashoffset-${name}`,
+          calcOffset(percents)
+        );
+      }
+    }
   };
 
   const search = async () => {
