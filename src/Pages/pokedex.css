@@ -139,8 +139,9 @@ p {
   --dashoffset-special-defense: 0;
   --dashoffset-special-speed: 0;
   --stroke-dash-array: 276;
+  --animation: 1.5s forwards ease-out;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   /* min-width: 27.2rem; */
   margin: var(--space-md);
   flex-wrap: wrap;
@@ -160,6 +161,7 @@ p {
   stroke-width: var(--stroke-width);
   stroke-dashoffset: var(--stroke-dash-array);
   stroke-dasharray: var(--stroke-dash-array);
+  animation: var(--animation);
 }
 
 .circle--grey {
@@ -185,23 +187,13 @@ p {
   padding: 0;
 }
 
-.stats__circle__text__percents {
-}
-
-.circle--hp {
-  stroke: #6bf8bd;
-  animation: fill-hp 1.5s forwards ease-out;
-}
+/* .stats__circle__text__percents {
+} */
 
 @keyframes fill-hp {
   100% {
     stroke-dashoffset: var(--dashoffset-hp);
   }
-}
-
-.circle--attack {
-  stroke: #f8b26b;
-  animation: fill-attack 1.5s forwards ease-out;
 }
 
 @keyframes fill-attack {
@@ -210,20 +202,10 @@ p {
   }
 }
 
-.circle--defense {
-  stroke: #f86b6b;
-  animation: fill-defense 1.1s forwards ease-out;
-}
-
 @keyframes fill-defense {
   100% {
     stroke-dashoffset: var(--dashoffset-defense);
   }
-}
-
-.circle--special-attack {
-  stroke: #f86bf8;
-  animation: fill-special-attack 1.1s forwards ease-out;
 }
 
 @keyframes fill-special-attack {
@@ -232,20 +214,10 @@ p {
   }
 }
 
-.circle--special-defense {
-  stroke: #6b8bf8;
-  animation: fill-special-defense 1.1s forwards ease-out;
-}
-
 @keyframes fill-special-defense {
   100% {
     stroke-dashoffset: var(--dashoffset-special-defense);
   }
-}
-
-.circle--speed {
-  stroke: #f8f86b;
-  animation: fill-speed 1.1s forwards ease-out;
 }
 
 @keyframes fill-speed {

@@ -48,7 +48,7 @@
     return res.json();
   };
 
-  const getPokemon = async (idOrName) =>
+  const getPokemonInfo = async (idOrName) =>
     getResource(idOrName, API_POKEMON_PATH);
 
   const getPokemonAdditionalInfo = async (idOrName) =>
@@ -120,7 +120,7 @@
   const search = async () => {
     try {
       const userInput = searchInput.value;
-      const pokemonFetchedInfo = await getPokemon(userInput);
+      const pokemonFetchedInfo = await getPokemonInfo(userInput);
       const additionalInfo = await getPokemonAdditionalInfo(userInput);
       updatePicture(pokemonFetchedInfo);
       updateDescription(additionalInfo);
@@ -142,17 +142,29 @@
     search();
   };
 
-  const circles = document.getElementsByClassName('circle');
-  const statNames = Object.keys(target.stats);
-  for (let i = 0; i < circles.length; i++) {
-    new IntersectionObserver((entries) => {
-      const className = `circle--${statNames[i]}`;
-      if (entries[0].isIntersecting) {
-        entries[0].target.classList.add(className);
-        return;
-      }
-      entries[0].target.classList.remove(className);
-    }).observe(circles[i]);
+  {
+    const circles = document.getElementsByClassName('circle');
+    const statNames = Object.keys(target.stats);
+    const colors = [
+      '#6bf8bd',
+      '#f8b26b',
+      '#f86b6b',
+      '#f86bf8',
+      '#6b8bf8',
+      '#f8f86b',
+    ];
+    for (let i = 0; i < circles.length; i++) {
+      new IntersectionObserver((entries) => {
+        const style = entries[0].target.style;
+        if (entries[0].isIntersecting) {
+          style['animation-name'] = `fill-${statNames[i]}`;
+          style.stroke = colors[i];
+          return;
+        }
+        style['animation-name'] = '';
+        style.stroke = '';
+      }).observe(circles[i]);
+    }
   }
 
   window.search = search;
