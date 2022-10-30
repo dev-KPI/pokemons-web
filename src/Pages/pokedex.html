@@ -70,31 +70,48 @@
       <div class="pokemon">
         <div>
           <img class="pokemon__picture" />
+          <div class="stats">
+            <div class="stats__circle">
+              <p class="stats__circle__text">
+                <span class="stats__circle__text__dimension">HP</span>
+                <br />
+                <span id="hp_percents" class="stats__circle__text__percents">
+                </span>
+              </p>
+              <div class="outer">
+                <svg width="110px" height="110px">
+                  <circle class="circle--grey" cx="54" cy="54" r="44" />
+                  <circle class="circle circle--hp" cx="54" cy="54" r="44" />
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
         <div>
           <p class="pokemon__description"></p>
           <div class="pokemon__properties">
             <div>
               <p>Height</p>
-              <p id="pokemonHeight" class="pokemon__properties--value">120</p>
+              <p id="pokemonHeight" class="pokemon__properties--value"></p>
               <p>Weight</p>
-              <p id="pokemonWeight" class="pokemon__properties--value">120</p>
+              <p id="pokemonWeight" class="pokemon__properties--value"></p>
             </div>
             <div>
               <p>Shape</p>
-              <p id="pokemonShape" class="pokemon__properties--value">Circle</p>
+              <p id="pokemonShape" class="pokemon__properties--value"></p>
               <p>Habitat</p>
-              <p id="pokemonHabitat" class="pokemon__properties--value">120</p>
+              <p id="pokemonHabitat" class="pokemon__properties--value"></p>
             </div>
           </div>
           <h3>Type</h3>
           <ul class="pokemon__type">
-            <li>Grass</li>
-            <li>Poison</li>
+            <li></li>
+            <li></li>
           </ul>
         </div>
       </div>
     </div>
+
     <footer>
       <div class="footer__img__logo">
         <img

@@ -26,6 +26,9 @@
     habitat: document.getElementById('pokemonHabitat'),
     shape: document.getElementById('pokemonShape'),
     type: document.getElementsByClassName('pokemon__type')[0],
+    stats: {
+      hp: document.getElementById('hp_percents'),
+    },
   };
 
   const getResource = async (idOrName, getFrom) => {
@@ -46,9 +49,10 @@
   const getPokemonAdditionalInfo = async (idOrName) =>
     getResource(idOrName, API_POKEMON_ADDITIONAL_INFO_PATH);
 
-  const updatePicture = (info) => {
-    target.picture.src = info.sprites.other['official-artwork'].front_default;
-    const name = info.name;
+  const updatePicture = (pokemonFetchedInfo) => {
+    target.picture.src =
+      pokemonFetchedInfo.sprites.other['official-artwork'].front_default;
+    const name = pokemonFetchedInfo.name;
     target.name.textContent = name[0].toUpperCase() + name.substring(1);
   };
 
@@ -63,21 +67,20 @@
     target.description.textContent = description;
   };
 
-  const updateProperties = (info, additionalInfo) => {
-    target.height.textContent = info.height + ' feet';
-    target.weight.textContent = info.weight + ' lbs';
+  const updateProperties = (pokemonFetchedInfo, additionalInfo) => {
+    target.height.textContent = pokemonFetchedInfo.height + ' feet';
+    target.weight.textContent = pokemonFetchedInfo.weight + ' lbs';
     target.habitat.textContent = additionalInfo.habitat
       ? additionalInfo.habitat.name
       : 'not known';
     target.shape.textContent = additionalInfo.shape.name;
-    target.pokemon.style.visibility = 'visible';
   };
 
-  const updateTypes = (info) => {
+  const updateTypes = (pokemonFetchedInfo) => {
     while (target.type.firstChild) {
       target.type.removeChild(target.type.firstChild);
     }
-    const types = info.types.map((item) => item.type.name);
+    const types = pokemonFetchedInfo.types.map((item) => item.type.name);
     types.forEach((type) => {
       const li = document.createElement('li');
       li.textContent = type;
@@ -85,15 +88,21 @@
     });
   };
 
+  const updateStats = (pokemonFetchedInfo) => {
+    target.stats.hp.textContent = pokemonFetchedInfo.stats[0].base_stat;
+  };
+
   const search = async () => {
     try {
       const userInput = searchInput.value;
-      const info = await getPokemon(userInput);
+      const pokemonFetchedInfo = await getPokemon(userInput);
       const additionalInfo = await getPokemonAdditionalInfo(userInput);
-      updatePicture(info);
+      updatePicture(pokemonFetchedInfo);
       updateDescription(additionalInfo);
-      updateProperties(info, additionalInfo);
-      updateTypes(info);
+      updateProperties(pokemonFetchedInfo, additionalInfo);
+      updateTypes(pokemonFetchedInfo);
+      updateStats(pokemonFetchedInfo);
+      target.pokemon.style.visibility = 'visible';
     } catch (e) {
       console.log(`Can not search a pokemon ${e}`);
     }
