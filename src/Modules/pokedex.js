@@ -4,7 +4,8 @@
   const addPath = (path) => API_BASE_PATH + '/' + path;
   const API_POKEMON_PATH = addPath('pokemon');
   const API_POKEMON_ADDITIONAL_INFO_PATH = addPath('pokemon-species');
-  const MAX_POKEMON_ID = 905;
+  const MAX_POKEMON_ID = 905; // TODO fetch it
+  const MIN_POKEMON_ID = 1;
 
   const searchInput = document.getElementsByClassName('search__input')[0];
 
@@ -45,49 +46,64 @@
   const getPokemonAdditionalInfo = async (idOrName) =>
     getResource(idOrName, API_POKEMON_ADDITIONAL_INFO_PATH);
 
+  const updatePicture = (info) => {
+    target.picture.src = info.sprites.other['official-artwork'].front_default;
+    const name = info.name;
+    target.name.textContent = name[0].toUpperCase() + name.substring(1);
+  };
+
+  const updateDescription = (additionalInfo) => {
+    const uniqueDescriptions = new Set(
+      additionalInfo.flavor_text_entries
+        .filter((item) => item.language.name === 'en')
+        .slice(0, 2)
+        .map((item) => item.flavor_text)
+    );
+    const description = [...uniqueDescriptions.values()].join(' ');
+    target.description.textContent = description;
+  };
+
+  const updateProperties = (info, additionalInfo) => {
+    target.height.textContent = info.height + ' feet';
+    target.weight.textContent = info.weight + ' lbs';
+    target.habitat.textContent = additionalInfo.habitat
+      ? additionalInfo.habitat.name
+      : 'not known';
+    target.shape.textContent = additionalInfo.shape.name;
+    target.pokemon.style.visibility = 'visible';
+  };
+
+  const updateTypes = (info) => {
+    while (target.type.firstChild) {
+      target.type.removeChild(target.type.firstChild);
+    }
+    const types = info.types.map((item) => item.type.name);
+    types.forEach((type) => {
+      const li = document.createElement('li');
+      li.textContent = type;
+      target.type.appendChild(li);
+    });
+  };
+
   const search = async () => {
     try {
       const userInput = searchInput.value;
       const info = await getPokemon(userInput);
       const additionalInfo = await getPokemonAdditionalInfo(userInput);
-
-      target.picture.src = info.sprites.other['official-artwork'].front_default;
-      const name = info.name;
-      target.name.textContent = name[0].toUpperCase() + name.substring(1);
-
-      const uniqueDescriptions = new Set(
-        additionalInfo.flavor_text_entries
-          .filter((item) => item.language.name === 'en')
-          .slice(0, 2)
-          .map((item) => item.flavor_text)
-      );
-      const description = [...uniqueDescriptions.values()].join(' ');
-      target.description.textContent = description;
-
-      target.height.textContent = info.height + ' feet';
-      target.weight.textContent = info.weight + ' lbs';
-      target.habitat.textContent = additionalInfo.habitat
-        ? additionalInfo.habitat.name
-        : 'not known';
-      target.shape.textContent = additionalInfo.shape.name;
-      target.pokemon.style.visibility = 'visible';
-
-      while (target.type.firstChild) {
-        target.type.removeChild(target.type.firstChild);
-      }
-      const types = info.types.map((item) => item.type.name);
-      types.forEach((type) => {
-        const li = document.createElement('li');
-        li.textContent = type;
-        target.type.appendChild(li);
-      });
+      updatePicture(info);
+      updateDescription(additionalInfo);
+      updateProperties(info, additionalInfo);
+      updateTypes(info);
     } catch (e) {
       console.log(`Can not search a pokemon ${e}`);
     }
   };
 
   const randomSearch = async () => {
-    const randomId = (Math.random() * (MAX_POKEMON_ID - 1) + 1).toFixed();
+    const randomId = (
+      Math.random() * (MAX_POKEMON_ID - MIN_POKEMON_ID) +
+      MIN_POKEMON_ID
+    ).toFixed();
     searchInput.value = randomId;
     search();
   };
