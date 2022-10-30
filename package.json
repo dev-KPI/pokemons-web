@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/dev-KPI/pokemons-web/issues"
   },
-  "homepage": "https://github.com/dev-KPI/pokemons-web#readme"
+  "homepage": "https://github.com/dev-KPI/pokemons-web#readme",
+  "devDependencies": {
+    "eslint": "^8.26.0"
+  }
 }

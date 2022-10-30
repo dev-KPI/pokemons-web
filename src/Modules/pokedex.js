@@ -6,21 +6,30 @@
   const API_POKEMON_ADDITIONAL_INFO_PATH = addPath('pokemon-species');
   const MAX_POKEMON_ID = 905;
 
-  const pokemonTarget = document.getElementsByClassName('pokemon')[0];
   const searchInput = document.getElementsByClassName('search__input')[0];
-  const pictureTarget = document.getElementsByClassName('pokemon__picture')[0];
-  const nameTarget = document.getElementsByClassName('pokemon__name')[0];
-  const descriptionTarget = document.getElementsByClassName(
-    'pokemon__description'
-  )[0];
-  const heightTarget = document.getElementById('pokemonHeight');
-  const weightTarget = document.getElementById('pokemonWeight');
-  const habitatTarget = document.getElementById('pokemonHabitat');
-  const shapeTarget = document.getElementById('pokemonShape');
+
+  searchInput.addEventListener('keyup', ({ key }) => {
+    if (key === 'Enter') {
+      search();
+    }
+  });
+
+  const target = {
+    pokemon: document.getElementsByClassName('pokemon')[0],
+    search: document.getElementsByClassName('search__input')[0],
+    picture: document.getElementsByClassName('pokemon__picture')[0],
+    name: document.getElementsByClassName('pokemon__name')[0],
+    description: document.getElementsByClassName('pokemon__description')[0],
+    height: document.getElementById('pokemonHeight'),
+    weight: document.getElementById('pokemonWeight'),
+    habitat: document.getElementById('pokemonHabitat'),
+    shape: document.getElementById('pokemonShape'),
+    type: document.getElementsByClassName('pokemon__type')[0],
+  };
 
   const getResource = async (idOrName, getFrom) => {
-    const getByType = typeof idOrName;
-    if (getByType !== 'string' && getByType !== 'number') {
+    const type = typeof idOrName;
+    if (type !== 'string' && type !== 'number') {
       throw TypeError('Query pokemon by number or string');
     }
     const res = await fetch(getFrom + '/' + idOrName);
@@ -36,16 +45,15 @@
   const getPokemonAdditionalInfo = async (idOrName) =>
     getResource(idOrName, API_POKEMON_ADDITIONAL_INFO_PATH);
 
-  window.search = async () => {
+  const search = async () => {
     try {
       const userInput = searchInput.value;
-      const pokemon = await getPokemon(userInput);
+      const info = await getPokemon(userInput);
       const additionalInfo = await getPokemonAdditionalInfo(userInput);
 
-      pictureTarget.src =
-        pokemon.sprites.other['official-artwork'].front_default;
-      const name = pokemon.name;
-      nameTarget.textContent = name[0].toUpperCase() + name.substring(1);
+      target.picture.src = info.sprites.other['official-artwork'].front_default;
+      const name = info.name;
+      target.name.textContent = name[0].toUpperCase() + name.substring(1);
 
       const uniqueDescriptions = new Set(
         additionalInfo.flavor_text_entries
@@ -54,29 +62,36 @@
           .map((item) => item.flavor_text)
       );
       const description = [...uniqueDescriptions.values()].join(' ');
-      descriptionTarget.textContent = description;
+      target.description.textContent = description;
 
-      heightTarget.textContent = pokemon.height;
-      weightTarget.textContent = pokemon.weight;
-      habitatTarget.textContent = additionalInfo.habitat
+      target.height.textContent = info.height + ' feet';
+      target.weight.textContent = info.weight + ' lbs';
+      target.habitat.textContent = additionalInfo.habitat
         ? additionalInfo.habitat.name
         : 'not known';
-      shapeTarget.textContent = additionalInfo.shape.name;
-      pokemonTarget.style.visibility = 'visible';
+      target.shape.textContent = additionalInfo.shape.name;
+      target.pokemon.style.visibility = 'visible';
+
+      while (target.type.firstChild) {
+        target.type.removeChild(target.type.firstChild);
+      }
+      const types = info.types.map((item) => item.type.name);
+      types.forEach((type) => {
+        const li = document.createElement('li');
+        li.textContent = type;
+        target.type.appendChild(li);
+      });
     } catch (e) {
       console.log(`Can not search a pokemon ${e}`);
     }
   };
 
-  window.randomSearch = async () => {
+  const randomSearch = async () => {
     const randomId = (Math.random() * (MAX_POKEMON_ID - 1) + 1).toFixed();
     searchInput.value = randomId;
     search();
   };
 
-  window.searchInput.addEventListener('keyup', ({ key }) => {
-    if (key === 'Enter') {
-      search();
-    }
-  });
+  window.search = search;
+  window.randomSearch = randomSearch;
 }

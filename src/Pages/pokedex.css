@@ -102,12 +102,29 @@ p {
   font-size: var(--text-size-sm);
   grid-template-columns: 1fr 1fr;
   place-content: center;
-  background-color: #effcd5;
   border-radius: var(--border-radius-regular);
   padding: var(--space-sm);
+  background-color: #effcd5;
 }
 
 .pokemon__properties--value {
   font-weight: bold;
+  color: var(--color-generic-blue-light);
+}
+
+.pokemon__type {
+  margin-top: 0;
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.pokemon__type li {
+  margin-left: 0;
+  border-radius: var(--border-radius-regular);
+  padding: var(--space-xs);
+  margin: var(--space-xs);
+  font-size: var(--text-size-md);
+  background-color: #eef4ff;
   color: var(--color-generic-blue-light);
 }
