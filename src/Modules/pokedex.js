@@ -142,6 +142,19 @@
     search();
   };
 
+  const circles = document.getElementsByClassName('circle');
+  const statNames = Object.keys(target.stats);
+  for (let i = 0; i < circles.length; i++) {
+    new IntersectionObserver((entries) => {
+      const className = `circle--${statNames[i]}`;
+      if (entries[0].isIntersecting) {
+        entries[0].target.classList.add(className);
+        return;
+      }
+      entries[0].target.classList.remove(className);
+    }).observe(circles[i]);
+  }
+
   window.search = search;
   window.randomSearch = randomSearch;
 }

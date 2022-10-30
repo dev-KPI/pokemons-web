@@ -88,6 +88,7 @@ p {
 
 .pokemon__picture {
   width: 350px;
+  height: 350px;
   margin: 0 var(--space-md) var(--space-md);
   background-color: var(--color-background-element);
   border-radius: var(--border-radius-regular);
@@ -211,7 +212,7 @@ p {
 
 .circle--defense {
   stroke: #f86b6b;
-  animation: fill-defense 1.5s forwards ease-out;
+  animation: fill-defense 1.1s forwards ease-out;
 }
 
 @keyframes fill-defense {
@@ -222,7 +223,7 @@ p {
 
 .circle--special-attack {
   stroke: #f86bf8;
-  animation: fill-special-attack 1.5s forwards ease-out;
+  animation: fill-special-attack 1.1s forwards ease-out;
 }
 
 @keyframes fill-special-attack {
@@ -233,7 +234,7 @@ p {
 
 .circle--special-defense {
   stroke: #6b8bf8;
-  animation: fill-special-defense 1.5s forwards ease-out;
+  animation: fill-special-defense 1.1s forwards ease-out;
 }
 
 @keyframes fill-special-defense {
@@ -244,7 +245,7 @@ p {
 
 .circle--speed {
   stroke: #f8f86b;
-  animation: fill-speed 1.5s forwards ease-out;
+  animation: fill-speed 1.1s forwards ease-out;
 }
 
 @keyframes fill-speed {
