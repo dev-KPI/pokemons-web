@@ -180,6 +180,8 @@ p {
 .stats__circle__text__dimension {
   font-size: var(--text-size-xs);
   font-weight: bold;
+  margin: 0;
+  padding: 0;
 }
 
 .stats__circle__text__percents {
@@ -242,7 +244,7 @@ p {
 
 .circle--speed {
   stroke: #f8f86b;
-  animation: fill--speed 1.5s forwards ease-out;
+  animation: fill-speed 1.5s forwards ease-out;
 }
 
 @keyframes fill-speed {

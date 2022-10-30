@@ -30,6 +30,9 @@
       hp: document.getElementById('hpPercents'),
       attack: document.getElementById('attackPercents'),
       defense: document.getElementById('defensePercents'),
+      'special-attack': document.getElementById('specialAttackPercents'),
+      'special-defense': document.getElementById('specialDefensePercents'),
+      speed: document.getElementById('speedPercents'),
     },
   };
 
