@@ -78,6 +78,17 @@ a {
   color: var(--color-generic-yellow-light);
 }
 
+.header__git__animation {
+  transition: 1s ease;
+}
+.header__git__animation:hover {
+  -webkit-transform: rotateZ(20deg);
+  transition: 1s;
+
+  -ms-transform: rotateZ(20deg);
+  transform: rotateZ(20deg);
+}
+
 /* this one need to delete */
 .smthingforex {
   height: 900px;
