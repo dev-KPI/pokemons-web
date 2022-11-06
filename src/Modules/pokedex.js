@@ -6,14 +6,7 @@
   const API_POKEMON_ADDITIONAL_INFO_PATH = addPath('pokemon-species');
   const MAX_POKEMON_ID = 905; // TODO fetch it
   const MIN_POKEMON_ID = 1;
-
-  const searchInput = document.getElementsByClassName('search__input')[0];
-
-  searchInput.addEventListener('keyup', ({ key }) => {
-    if (key === 'Enter') {
-      search();
-    }
-  });
+  const NUMBER_OF_STAT_CIRCLES = 6;
 
   const target = {
     pokemon: document.getElementsByClassName('pokemon')[0],
@@ -98,8 +91,8 @@
   const calcOffset = (percents) => {
     if (percents >= 100) return 0;
     const computedStyle = getComputedStyle(statsCssProperties);
-    const dashArray = computedStyle.getPropertyValue('--stroke-dash-array');
-    return (+dashArray - (+dashArray / 100) * percents).toString();
+    const dash = computedStyle.getPropertyValue('--stroke-dash-array');
+    return (+dash - (+dash / 100) * percents).toString();
   };
 
   const updateStats = (pokemonFetchedInfo) => {
@@ -117,6 +110,46 @@
     }
   };
 
+  const statNames = Object.keys(target.stats);
+  const colors = [
+    '#6bf8bd',
+    '#f8b26b',
+    '#f86b6b',
+    '#f86bf8',
+    '#6b8bf8',
+    '#f8f86b',
+  ];
+
+  const setCircleAnimation = (style, indexOfCircle) => {
+    style['-webkit-animation-name'] = `fill-${statNames[indexOfCircle]}`;
+    style['-o-animation-name'] = `fill-${statNames[indexOfCircle]}`;
+    style['animation-name'] = `fill-${statNames[indexOfCircle]}`;
+    style['webkit-stroke'] = colors[indexOfCircle];
+    style.stroke = colors[indexOfCircle];
+  };
+
+  const unsetCircleAnimation = (style) => {
+    style['-webkit-animation-name'] = '';
+    style['-o-animation-name'] = '';
+    style['animation-name'] = '';
+    style['webkit-stroke'] = '';
+    style.stroke = '';
+  };
+
+  const updateCirclesAnimation = () => {
+    let i = 0;
+    while (i < NUMBER_OF_STAT_CIRCLES - 1) {
+      const style = document.getElementsByClassName(
+        `circle--${statNames[i]}`
+      )[0].style;
+      console.log(style);
+      unsetCircleAnimation(style);
+      setCircleAnimation(style, i);
+      i++;
+    }
+  };
+
+  const searchInput = document.getElementsByClassName('search__input')[0];
   const search = async () => {
     try {
       const userInput = searchInput.value;
@@ -128,10 +161,17 @@
       updateTypes(pokemonFetchedInfo);
       updateStats(pokemonFetchedInfo);
       target.pokemon.style.visibility = 'visible';
+      requestAnimationFrame(() => updateCirclesAnimation()); //?
     } catch (e) {
       console.log(`Can not search a pokemon ${e}`);
     }
   };
+
+  searchInput.addEventListener('keyup', ({ key }) => {
+    if (key === 'Enter') {
+      search();
+    }
+  });
 
   const randomSearch = async () => {
     const randomId = (
@@ -142,30 +182,25 @@
     search();
   };
 
-  {
+  const setUpObserver = () => {
     const circles = document.getElementsByClassName('circle');
-    const statNames = Object.keys(target.stats);
-    const colors = [
-      '#6bf8bd',
-      '#f8b26b',
-      '#f86b6b',
-      '#f86bf8',
-      '#6b8bf8',
-      '#f8f86b',
-    ];
+    const options = {
+      root: null,
+      rootMargin: '0px',
+    };
+
     for (let i = 0; i < circles.length; i++) {
       new IntersectionObserver((entries) => {
         const style = entries[0].target.style;
         if (entries[0].isIntersecting) {
-          style['animation-name'] = `fill-${statNames[i]}`;
-          style.stroke = colors[i];
+          setCircleAnimation(style, i);
           return;
         }
-        style['animation-name'] = '';
-        style.stroke = '';
-      }).observe(circles[i]);
+        unsetCircleAnimation(style);
+      }, options).observe(circles[i]);
     }
-  }
+  };
+  setUpObserver();
 
   window.search = search;
   window.randomSearch = randomSearch;

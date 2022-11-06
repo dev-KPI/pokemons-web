@@ -159,8 +159,21 @@ p {
 .circle {
   fill: none;
   stroke-width: var(--stroke-width);
+
+  -webkit-stroke-dashoffset: var(--stroke-dash-array);
+  -moz-stroke-dashoffset: var(--stroke-dash-array);
+  -o-stroke-dashoffset: var(--stroke-dash-array);
   stroke-dashoffset: var(--stroke-dash-array);
+
+  -webkit-stroke-dasharray: var(--stroke-dash-array);
+  -moz-stroke-dasharray: var(--stroke-dash-array);
+  -o-stroke-dasharray: var(--stroke-dash-array);
   stroke-dasharray: var(--stroke-dash-array);
+
+  -webkit-animation: var(--animation);
+  -moz-animation: var(--animation);
+  -o-animation: var(--animation);
+  -ms-animation: var(--animation);
   animation: var(--animation);
 }
 
@@ -190,8 +203,20 @@ p {
 /* .stats__circle__text__percents {
 } */
 
+@-webkit-keyframes fill-hp {
+  100% {
+    -webkit-stroke-dashoffset: var(--dashoffset-hp);
+    -moz-stroke-dashoffset: var(--dashoffset-hp);
+    -o-stroke-dashoffset: var(--dashoffset-hp);
+    stroke-dashoffset: var(--dashoffset-hp);
+  }
+} /*? */
+
 @keyframes fill-hp {
   100% {
+    -webkit-stroke-dashoffset: var(--dashoffset-hp);
+    -moz-stroke-dashoffset: var(--dashoffset-hp);
+    -o-stroke-dashoffset: var(--dashoffset-hp);
     stroke-dashoffset: var(--dashoffset-hp);
   }
 }
