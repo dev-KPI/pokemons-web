@@ -138,11 +138,10 @@
 
   const updateCirclesAnimation = () => {
     let i = 0;
-    while (i < NUMBER_OF_STAT_CIRCLES - 1) {
+    while (i < NUMBER_OF_STAT_CIRCLES) {
       const style = document.getElementsByClassName(
         `circle--${statNames[i]}`
       )[0].style;
-      console.log(style);
       unsetCircleAnimation(style);
       setCircleAnimation(style, i);
       i++;
