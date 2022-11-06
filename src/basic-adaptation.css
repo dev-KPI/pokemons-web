@@ -1,0 +1,23 @@
+/* Header adapt. */
+@media screen and (max-width: 795px) {
+  .header__git__animation {
+    display: none;
+  }
+  .header__items {
+    display: none;
+  }
+}
+@media screen and (min-width: 795px) {
+  .burger {
+    display: none;
+  }
+}
+/* Footer adapt. */
+@media screen and (max-width: 795px) {
+  .footer {
+    width: 50%;
+  }
+  .footer__social {
+    width: 70%;
+  }
+}

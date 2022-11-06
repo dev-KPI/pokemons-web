@@ -48,6 +48,7 @@ a {
 
 .header__github {
   width: 55px;
+  justify-self: flex-end;
 }
 
 .header__items {
@@ -96,7 +97,6 @@ a {
 
 footer {
   width: 100%;
-  height: auto;
   background: var(--color-generic-yellow-light);
   margin: 0 auto;
   text-align: center;
@@ -108,8 +108,9 @@ footer a {
 
 .footer__social {
   width: 100%;
-  display: inline-flex;
+  display: flex;
   padding-top: var(--space-xxxxs);
+  margin: 0 auto;
 }
 
 .footer__picture {
@@ -119,7 +120,7 @@ footer a {
 
 /* */
 footer ul {
-  display: flex;
+  display: inline-flex;
   position: relative;
   top: 50%;
   left: 50%;
@@ -138,7 +139,7 @@ footer ul li a {
   line-height: 80px;
   font-size: var(--text-size-md);
   margin: 0 var(--space-md);
-  display: block;
+  display: inline-block;
   border-radius: 50%;
   position: relative;
   overflow: hidden;
@@ -193,4 +194,118 @@ footer ul li:nth-child(4) a:before {
 .footer__mail {
   padding: var(--space-sm);
   margin: var(--space-sm);
+}
+
+/*background: var(--color-generic-blue-light);*/
+label .menu {
+  position: absolute;
+  right: -100px;
+  top: -100px;
+  z-index: 100;
+  width: 200px;
+  height: 200px;
+  background: var(--color-generic-yellow-light);
+  border-radius: 50% 50% 50% 50%;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  box-shadow: 0 0 0 0 var(--color-generic-blue-light),
+    0 0 0 0 var(--color-generic-blue-light);
+  cursor: pointer;
+}
+
+label .hamburger {
+  position: absolute;
+  top: 135px;
+  left: 50px;
+  width: 30px;
+  height: 2px;
+  background: var(--color-generic-blue-light);
+  display: block;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+label .hamburger:after,
+label .hamburger:before {
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--color-generic-blue-light);
+}
+
+label .hamburger:before {
+  top: -10px;
+}
+
+label .hamburger:after {
+  bottom: -10px;
+}
+
+label input {
+  display: none;
+}
+
+label input:checked + .menu {
+  box-shadow: 0 0 0 100vw var(--color-generic-yellow-light),
+    0 0 0 100vh var(--color-generic-yellow-light);
+  border-radius: 0;
+}
+
+label input:checked + .menu .hamburger {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+label input:checked + .menu .hamburger:after {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  bottom: 0;
+}
+
+label input:checked + .menu .hamburger:before {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  top: 0;
+}
+
+label input:checked + .menu + ul {
+  opacity: 1;
+}
+
+label ul {
+  list-style-type: none;
+  z-index: 200;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  -webkit-transition: 0.25s 0s ease-in-out;
+  transition: 0.25s 0s ease-in-out;
+}
+
+label a {
+  margin-bottom: var(--space-xs);
+  display: block;
+  text-decoration: none;
+}
+
+label .textwrapper {
+  border-color: var(--color-generic-blue-light);
+}
+label .textwrapper a {
+  color: var(--color-generic-blue-light);
+}
+label li {
+  margin-top: var(--space-lg);
+}
+label li:hover .textwrapper {
+  width: 100%;
 }
