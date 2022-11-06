@@ -124,7 +124,7 @@
     style['-webkit-animation-name'] = `fill-${statNames[indexOfCircle]}`;
     style['-o-animation-name'] = `fill-${statNames[indexOfCircle]}`;
     style['animation-name'] = `fill-${statNames[indexOfCircle]}`;
-    style['webkit-stroke'] = colors[indexOfCircle];
+    style['-webkit-stroke'] = colors[indexOfCircle];
     style.stroke = colors[indexOfCircle];
   };
 
@@ -132,7 +132,7 @@
     style['-webkit-animation-name'] = '';
     style['-o-animation-name'] = '';
     style['animation-name'] = '';
-    style['webkit-stroke'] = '';
+    style['-webkit-stroke'] = '';
     style.stroke = '';
   };
 
@@ -185,11 +185,11 @@
     const circles = document.getElementsByClassName('circle');
     const options = {
       root: null,
-      rootMargin: '0px',
     };
 
     for (let i = 0; i < circles.length; i++) {
       new IntersectionObserver((entries) => {
+        console.log(entries); // to see if observer works
         const style = entries[0].target.style;
         if (entries[0].isIntersecting) {
           setCircleAnimation(style, i);
