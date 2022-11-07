@@ -120,20 +120,21 @@
     '#f8f86b',
   ];
 
-  const setCircleAnimation = (style, indexOfCircle) => {
-    style['-webkit-animation-name'] = `fill-${statNames[indexOfCircle]}`;
-    style['-o-animation-name'] = `fill-${statNames[indexOfCircle]}`;
-    style['animation-name'] = `fill-${statNames[indexOfCircle]}`;
-    style['-webkit-stroke'] = colors[indexOfCircle];
-    style.stroke = colors[indexOfCircle];
-  };
-
-  const unsetCircleAnimation = (style) => {
-    style['-webkit-animation-name'] = '';
-    style['-o-animation-name'] = '';
-    style['animation-name'] = '';
-    style['-webkit-stroke'] = '';
-    style.stroke = '';
+  const toggleCircleAnimation = (
+    style,
+    isUnset = true,
+    indexOfCircle = null
+  ) => {
+    const updateStyle = (styleToUpdate, styleValue) =>
+      isUnset
+        ? (style[styleToUpdate] = '')
+        : (style[styleToUpdate] = styleValue);
+    updateStyle('-webkit-animation-name', `fill-${statNames[indexOfCircle]}`);
+    updateStyle('-o-animation-name', `fill-${statNames[indexOfCircle]}`);
+    updateStyle('animation-name', `fill-${statNames[indexOfCircle]}`);
+    updateStyle('-webkit-stroke', colors[indexOfCircle]);
+    updateStyle('-o-stroke', colors[indexOfCircle]);
+    updateStyle('stroke', colors[indexOfCircle]);
   };
 
   const updateCirclesAnimation = () => {
@@ -142,8 +143,8 @@
       const style = document.getElementsByClassName(
         `circle--${statNames[i]}`
       )[0].style;
-      unsetCircleAnimation(style);
-      setCircleAnimation(style, i);
+      toggleCircleAnimation(style);
+      toggleCircleAnimation(style, false, i);
       i++;
     }
   };
@@ -192,10 +193,10 @@
         console.log(entries); // to see if observer works
         const style = entries[0].target.style;
         if (entries[0].isIntersecting) {
-          setCircleAnimation(style, i);
+          toggleCircleAnimation(style, false, i);
           return;
         }
-        unsetCircleAnimation(style);
+        toggleCircleAnimation(style);
       }, options).observe(circles[i]);
     }
   };
