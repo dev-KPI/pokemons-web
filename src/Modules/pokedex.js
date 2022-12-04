@@ -7,10 +7,20 @@
   const MAX_POKEMON_ID = 905; // TODO fetch it
   const MIN_POKEMON_ID = 1;
   const NUMBER_OF_STAT_CIRCLES = 6;
-
+  const STATS_COLORS = [
+    '#6bf8bd',
+    '#f8b26b',
+    '#f86b6b',
+    '#f86bf8',
+    '#6b8bf8',
+    '#f8f86b',
+  ];
   const target = {
     pokemon: document.getElementsByClassName('pokemon')[0],
     search: document.getElementsByClassName('search__input')[0],
+    searchInput: document.getElementsByClassName('search__input')[0],
+    searchButton: document.getElementsByClassName('search__button')[0],
+    randomSearch: document.getElementsByClassName('search__random')[0],
     picture: document.getElementsByClassName('pokemon__picture')[0],
     name: document.getElementsByClassName('pokemon__name')[0],
     description: document.getElementsByClassName('pokemon__description')[0],
@@ -19,6 +29,7 @@
     habitat: document.getElementById('pokemonHabitat'),
     shape: document.getElementById('pokemonShape'),
     type: document.getElementsByClassName('pokemon__type')[0],
+    statsContainer: document.getElementsByClassName('stats_container')[0],
     stats: {
       hp: document.getElementById('hpPercents'),
       attack: document.getElementById('attackPercents'),
@@ -86,11 +97,9 @@
     });
   };
 
-  const statsCssProperties = document.getElementsByClassName('stats')[0];
-
   const calcOffset = (percents) => {
     if (percents >= 100) return 0;
-    const computedStyle = getComputedStyle(statsCssProperties);
+    const computedStyle = getComputedStyle(target.statsContainer);
     const dash = computedStyle.getPropertyValue('--stroke-dash-array');
     return (+dash - (+dash / 100) * percents).toString();
   };
@@ -102,7 +111,7 @@
       const percents = item.base_stat;
       if (target.stats[name]) {
         target.stats[name].textContent = percents;
-        statsCssProperties.style.setProperty(
+        target.statsContainer.style.setProperty(
           `--dashoffset-${name}`,
           calcOffset(percents)
         );
@@ -111,15 +120,6 @@
   };
 
   const statNames = Object.keys(target.stats);
-  const colors = [
-    '#6bf8bd',
-    '#f8b26b',
-    '#f86b6b',
-    '#f86bf8',
-    '#6b8bf8',
-    '#f8f86b',
-  ];
-
   const toggleCircleAnimation = (
     style,
     isUnset = true,
@@ -132,9 +132,9 @@
     updateStyle('-webkit-animation-name', `fill-${statNames[indexOfCircle]}`);
     updateStyle('-o-animation-name', `fill-${statNames[indexOfCircle]}`);
     updateStyle('animation-name', `fill-${statNames[indexOfCircle]}`);
-    updateStyle('-webkit-stroke', colors[indexOfCircle]);
-    updateStyle('-o-stroke', colors[indexOfCircle]);
-    updateStyle('stroke', colors[indexOfCircle]);
+    updateStyle('-webkit-stroke', STATS_COLORS[indexOfCircle]);
+    updateStyle('-o-stroke', STATS_COLORS[indexOfCircle]);
+    updateStyle('stroke', STATS_COLORS[indexOfCircle]);
   };
 
   const updateCirclesAnimation = () => {
@@ -149,10 +149,9 @@
     }
   };
 
-  const searchInput = document.getElementsByClassName('search__input')[0];
   const search = async () => {
     try {
-      const userInput = searchInput.value;
+      const userInput = target.searchInput.value;
       const pokemonFetchedInfo = await getPokemonInfo(userInput);
       const additionalInfo = await getPokemonAdditionalInfo(userInput);
       updatePicture(pokemonFetchedInfo);
@@ -167,18 +166,12 @@
     }
   };
 
-  searchInput.addEventListener('keyup', ({ key }) => {
-    if (key === 'Enter') {
-      search();
-    }
-  });
-
   const randomSearch = async () => {
     const randomId = (
       Math.random() * (MAX_POKEMON_ID - MIN_POKEMON_ID) +
       MIN_POKEMON_ID
     ).toFixed();
-    searchInput.value = randomId;
+    target.searchInput.value = randomId;
     search();
   };
 
@@ -201,6 +194,12 @@
     }
   })();
 
-  window.search = search;
-  window.randomSearch = randomSearch;
+  target.searchInput.addEventListener('keyup', ({ key }) => {
+    if (key === 'Enter') {
+      search();
+    }
+  });
+
+  target.searchButton.addEventListener('click', search);
+  target.randomSearch.addEventListener('click', randomSearch);
 }

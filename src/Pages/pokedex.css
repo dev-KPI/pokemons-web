@@ -129,7 +129,7 @@ p {
   color: var(--color-generic-blue-light);
 }
 
-.stats {
+.stats_container {
   --stroke-width: 17px;
   --dashoffset-hp: 0;
   --dashoffset-attack: 0;
