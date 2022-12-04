@@ -182,7 +182,7 @@
     search();
   };
 
-  const setUpObserver = () => {
+  (() => {
     const circles = document.getElementsByClassName('circle');
     const options = {
       root: null,
@@ -199,8 +199,7 @@
         toggleCircleAnimation(style);
       }, options).observe(circles[i]);
     }
-  };
-  setUpObserver();
+  })();
 
   window.search = search;
   window.randomSearch = randomSearch;
