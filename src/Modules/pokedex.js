@@ -15,21 +15,21 @@
     '#6b8bf8',
     '#f8f86b',
   ];
-  const target = {
-    pokemon: document.getElementsByClassName('pokemon')[0],
-    search: document.getElementsByClassName('search__input')[0],
-    searchInput: document.getElementsByClassName('search__input')[0],
-    searchButton: document.getElementsByClassName('search__button')[0],
-    randomSearch: document.getElementsByClassName('search__random')[0],
-    picture: document.getElementsByClassName('pokemon__picture')[0],
-    name: document.getElementsByClassName('pokemon__name')[0],
-    description: document.getElementsByClassName('pokemon__description')[0],
-    height: document.getElementById('pokemonHeight'),
-    weight: document.getElementById('pokemonWeight'),
-    habitat: document.getElementById('pokemonHabitat'),
-    shape: document.getElementById('pokemonShape'),
-    type: document.getElementsByClassName('pokemon__type')[0],
-    statsContainer: document.getElementsByClassName('stats_container')[0],
+
+  const targetData = {
+    pokemon: 'pokemon',
+    searchInput: 'search__input',
+    searchButton: 'search__button',
+    randomSearch: 'search__random',
+    picture: 'pokemon__picture',
+    name: 'pokemon__name',
+    description: 'pokemon__description',
+    height: 'pokemonHeight',
+    weight: 'pokemonWeight',
+    habitat: 'pokemonHabitat',
+    shape: 'pokemonShape',
+    type: 'pokemon__type',
+    statsContainer: 'stats_container',
     stats: {
       hp: document.getElementById('hpPercents'),
       attack: document.getElementById('attackPercents'),
@@ -39,6 +39,14 @@
       speed: document.getElementById('speedPercents'),
     },
   };
+
+  const target = Object.fromEntries(
+    Object.entries(targetData).map(([key, value]) =>
+      typeof value === 'object'
+        ? [key, value]
+        : [key, document.getElementsByClassName(value)[0]]
+    )
+  );
 
   const getResource = async (idOrName, getFrom) => {
     const type = typeof idOrName;
