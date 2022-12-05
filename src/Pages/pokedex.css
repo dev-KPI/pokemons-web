@@ -208,13 +208,13 @@ p {
     height: var(--size);
   }
 
-  .stats {
+  .stats_container {
     width: calc(100vw / 2 - var(--space-md));
   }
 }
 
 @media all and (max-width: 820px) {
-  .stats {
+  .stats_container {
     grid-template-columns: 1fr 1fr;
   }
 

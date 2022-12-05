@@ -24,26 +24,34 @@
     picture: 'pokemon__picture',
     name: 'pokemon__name',
     description: 'pokemon__description',
-    height: 'pokemonHeight',
-    weight: 'pokemonWeight',
-    habitat: 'pokemonHabitat',
-    shape: 'pokemonShape',
+    height: 'pokemon__height',
+    weight: 'pokemon__weight',
+    habitat: 'pokemon__habitat',
+    shape: 'pokemon__shape',
     type: 'pokemon__type',
     statsContainer: 'stats_container',
     stats: {
-      hp: document.getElementById('hpPercents'),
-      attack: document.getElementById('attackPercents'),
-      defense: document.getElementById('defensePercents'),
-      'special-attack': document.getElementById('specialAttackPercents'),
-      'special-defense': document.getElementById('specialDefensePercents'),
-      speed: document.getElementById('speedPercents'),
+      hp: 'hpPercents',
+      attack: 'attackPercents',
+      defense: 'defensePercents',
+      'special-attack': 'specialAttackPercents',
+      'special-defense': 'specialDefensePercents',
+      speed: 'speedPercents',
     },
   };
 
   const target = Object.fromEntries(
     Object.entries(targetData).map(([key, value]) =>
       typeof value === 'object'
-        ? [key, value]
+        ? [
+            key,
+            Object.fromEntries(
+              Object.entries(value).map(([k, v]) => [
+                k,
+                document.getElementById(v),
+              ])
+            ),
+          ]
         : [key, document.getElementsByClassName(value)[0]]
     )
   );
