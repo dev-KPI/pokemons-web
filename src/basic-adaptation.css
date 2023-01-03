@@ -1,0 +1,47 @@
+/* Header adapt. */
+@media screen and (max-width: 795px) {
+  .header__git__animation {
+    display: none;
+  }
+  .header__items {
+    display: none;
+  }
+}
+@media screen and (min-width: 795px) {
+  .burger {
+    display: none;
+  }
+}
+/* Footer adapt. */
+@media screen and (max-width: 544px) {
+  footer ul li a {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border: 2px solid rgb(0, 0, 0);
+  }
+  footer ul li a .icon {
+    width: 70%;
+    height: 70%;
+  }
+
+  .footer__picture {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 425px) {
+  footer ul li a {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border: 1.5px solid rgb(0, 0, 0);
+  }
+  footer ul li a .icon {
+    width: 50%;
+    height: 50%;
+  }
+
+  .footer__picture {
+    width: 250px;
+  }
+}
