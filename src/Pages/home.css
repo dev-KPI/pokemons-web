@@ -1,0 +1,103 @@
+._container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-lg);
+}
+
+.parallax {
+  min-height: 100vh;
+}
+
+.parallax__body {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.parallax__container {
+  text-transform: uppercase;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: var(--space-xxxxl) auto;
+}
+
+.parallax__label {
+  color: var(--color-generic-blue-dark);
+  font-size: var(--text-size-xxl);
+  text-align: center;
+  letter-spacing: var(--space-xxs);
+}
+
+.parallax__title {
+  text-shadow: 2px 2px 2px var(--color-generic-yellow-dark);
+  font-size: var(--text-size-xxxxl);
+  text-align: center;
+  color: var(--color-generic-blue-dark);
+}
+
+.parallax__images {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+}
+
+.images-parallax__clouds,
+.images-parallax__mountains,
+.images-parallax__human {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+}
+
+.images-parallax__clouds {
+  background: url(../Icons/background-parallax/clouds.jpg) top / cover no-repeat;
+  top: 0;
+}
+
+.images-parallax__mountains {
+  background: url(../Icons/background-parallax/mountains.png) top / cover
+    no-repeat;
+  top: 15%;
+  z-index: 2;
+}
+
+.images-parallax__human {
+  background: url(../Icons/background-parallax/human.png) top / cover no-repeat;
+  top: 45%;
+  z-index: 3;
+}
+@media (max-aspect-ratio: 3/2) {
+  .images-parallax__human {
+    background-position: 20% top;
+  }
+}
+
+.content {
+  background-color: var(--color-generic-blue-dark);
+  color: var(--color-text-on-dark-background);
+  position: relative;
+  z-index: 2;
+}
+.content::before {
+  pointer-events: none;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  transform: translate(0px, -100%);
+  background: linear-gradient(
+    180deg,
+    rgba(243, 243, 252, 0),
+    var(--color-generic-blue-dark)
+  );
+}

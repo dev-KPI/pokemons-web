@@ -23,6 +23,8 @@ a {
 }
 
 .header {
+  position: relative;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   background: var(--color-generic-blue-light);
@@ -109,6 +111,7 @@ footer {
   background: var(--color-generic-yellow-light);
   margin: 0 auto;
   text-align: center;
+  z-index: 100;
 }
 
 .footer__social {
