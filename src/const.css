@@ -41,7 +41,9 @@
   --color-generic-yellow-light: #ffcc00;
 
   --color-background-default: #ffffff;
-  /* --color-background-hover: #f5f5ee; */
+  --color-background-header: #d0d0d0;
+  --color-link-a-default: #ffffff;
+  --color-background-hover: #f5f5ee;
   --color-background-element: #f8f9f5;
   --color-background-selected: #effcd5;
   --color-background-disabled: #d3d3d3;
@@ -49,6 +51,7 @@
   --color-text-default: #3b3131;
   --color-text-highlighted: #1b1b1b;
   --color-text-selected: #0c0404;
+  --color-text-on-dark-background: #ffffff;
 
   --color-text-success: #4dad5b;
   --color-text-info: #1847d7;

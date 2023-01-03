@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="http://fonts.cdnfonts.com/css/gotham" rel="stylesheet" />
+    <link rel="stylesheet" href="../const.css" />
+    <link rel="stylesheet" href="../basic.css" />
+    <link rel="stylesheet" href="./pokedex.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pokédex</h1>
+      <p class="page__description">
+        Pokédex is an electronic device created and designed to catalog and
+        provide information regarding the various species of Pokémon.
+        <b>Let's search it!</b>
+      </p>
+      <div class="search">
+        <input
+          type="text"
+          class="search__input"
+          placeholder="Search by national № or name..."
+        />
+        <button type="submit" class="search__button">
+          <img src="../Icons/search.png" alt="search" />
+        </button>
+        <button type="submit" class="search__random" title="Random Pokemon">
+          <img src="../Icons/random.png" alt="search" />
+        </button>
+      </div>
+      <h2 class="pokemon__name"></h2>
+      <div class="pokemon">
+        <div>
+          <img class="pokemon__picture" />
+          <div class="stats_container">
+            <div class="stats__circle">
+              <p class="stats__circle__text">
+                <span class="stats__circle__text__dimension">HP</span>
+                <br />
+                <span id="hpPercents" class="stats__circle__text__percents">
+                </span>
+              </p>
+              <div class="outer">
+                <svg width="110px" height="110px">
+                  <circle class="circle--grey" cx="54" cy="54" r="44" />
+                  <circle class="circle circle--hp" cx="54" cy="54" r="44" />
+                </svg>
+              </div>
+            </div>
+            <div class="stats__circle">
+              <p class="stats__circle__text">
+                <span class="stats__circle__text__dimension">Attack</span>
+                <br />
+                <span id="attackPercents" class="stats__circle__text__percents">
+                </span>
+              </p>
+              <div class="outer">
+                <svg width="110px" height="110px">
+                  <circle class="circle--grey" cx="54" cy="54" r="44" />
+                  <circle
+                    class="circle circle--attack"
+                    cx="54"
+                    cy="54"
+                    r="44"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="stats__circle">
+              <p class="stats__circle__text">
+                <span class="stats__circle__text__dimension">Defense</span>
+                <br />
+                <span
+                  id="defensePercents"
+                  class="stats__circle__text__percents"
+                >
+                </span>
+              </p>
+              <div class="outer">
+                <svg width="110px" height="110px">
+                  <circle class="circle--grey" cx="54" cy="54" r="44" />
+                  <circle
+                    class="circle circle--defense"
+                    cx="54"
+                    cy="54"
+                    r="44"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="stats__circle">
+              <p class="stats__circle__text">
+                <span class="stats__circle__text__dimension"
+                  >Special <br />Attack</span
+                >
+                <br />
+                <span
+                  id="specialAttackPercents"
+                  class="stats__circle__text__percents"
+                >
+                </span>
+              </p>
+              <div class="outer">
+                <svg width="110px" height="110px">
+                  <circle class="circle--grey" cx="54" cy="54" r="44" />
+                  <circle
+                    class="circle circle--special-attack"
+                    cx="54"
+                    cy="54"
+                    r="44"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="stats__circle">
+              <p class="stats__circle__text">
+                <span class="stats__circle__text__dimension"
+                  >Special <br />Defense</span
+                >
+                <br />
+                <span
+                  id="specialDefensePercents"
+                  class="stats__circle__text__percents"
+                >
+                </span>
+              </p>
+              <div class="outer">
+                <svg width="110px" height="110px">
+                  <circle class="circle--grey" cx="54" cy="54" r="44" />
+                  <circle
+                    class="circle circle--special-defense"
+                    cx="54"
+                    cy="54"
+                    r="44"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="stats__circle">
+              <p class="stats__circle__text">
+                <span class="stats__circle__text__dimension">Speed</span>
+                <br />
+                <span id="speedPercents" class="stats__circle__text__percents">
+                </span>
+              </p>
+              <div class="outer">
+                <svg width="110px" height="110px">
+                  <circle class="circle--grey" cx="54" cy="54" r="44" />
+                  <circle class="circle circle--speed" cx="54" cy="54" r="44" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="pokemon__description"></p>
+          <div class="pokemon__properties">
+            <div>
+              <p>Height</p>
+              <p class="pokemon__height pokemon__properties--value"></p>
+              <p>Weight</p>
+              <p class="pokemon__weight pokemon__properties--value"></p>
+            </div>
+            <div>
+              <p>Shape</p>
+              <p class="pokemon__shape pokemon__properties--value"></p>
+              <p>Habitat</p>
+              <p class="pokemon__habitat pokemon__properties--value"></p>
+            </div>
+          </div>
+          <h3>Type</h3>
+          <ul class="pokemon__type">
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../Modules/pokedex.js"></script>
+</html>
