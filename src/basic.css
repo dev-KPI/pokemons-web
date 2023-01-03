@@ -27,7 +27,7 @@ a {
   z-index: 100;
   display: flex;
   justify-content: space-between;
-  background: var(--color-generic-blue-light);
+  background: var(--color-generic-blue-dark);
   font-family: var(--font-primary);
   font-size: var(--text-size-md);
 }
