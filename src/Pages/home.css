@@ -19,11 +19,24 @@
 .parallax__container {
   text-transform: uppercase;
   position: relative;
-  z-index: 3;
+  z-index: 4;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: var(--space-xxxxl) auto;
+}
+
+@media (width <= 480px) {
+  .parallax__container {
+    margin: var(--space-xxxl) auto;
+  }
+  .parallax__title,
+  .parallax__label {
+    margin: var(--space-sm) auto;
+  }
+  .parallax__arrow {
+    margin: var(--space-xxxxl) auto;
+  }
 }
 
 .parallax__label {

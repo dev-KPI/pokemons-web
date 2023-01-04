@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 *,
 *:before,
@@ -101,11 +102,6 @@ a {
   transform: rotateZ(20deg);
 }
 
-/* this one need to delete */
-.smthingforex {
-  height: 900px;
-}
-
 footer {
   width: 100%;
   background: var(--color-generic-yellow-light);
@@ -124,7 +120,6 @@ footer {
   margin: var(--space-lg);
 }
 
-/* */
 footer ul {
   display: inline-flex;
   position: relative;

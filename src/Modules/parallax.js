@@ -63,12 +63,6 @@ window.onload = () => {
       content.style.cssText = `transform: translate( 0%, -${
         scrollTopPercent / 1
       }%);`;
-      // mountains.parentElement.style.cssText = `transform: translate(0%, -${
-      // scrollTopPercent / 6
-      // }%);`;
-      // human.parentElement.style.transform = `translate(0%, -${
-      // scrollTopPercent / 3
-      // }%);`;
     };
 
     const observer = new IntersectionObserver(
