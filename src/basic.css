@@ -23,6 +23,10 @@ a {
   text-decoration: none;
 }
 
+.link-on-dark-background {
+  color: var(--color-generic-yellow-light);
+}
+
 .header {
   position: relative;
   z-index: 100;

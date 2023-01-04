@@ -9,9 +9,9 @@ window.onload = () => {
     const human = document.querySelector('.images-parallax__human');
     const content = document.querySelector('.parallax__container');
 
-    const forClouds = 10;
-    const forMountains = 25;
-    const forHuman = 100;
+    const forClouds = 15;
+    const forMountains = 30;
+    const forHuman = 1500;
 
     const speed = 0.05;
 
