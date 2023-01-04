@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 *,
 *:before,
@@ -22,10 +23,16 @@ a {
   text-decoration: none;
 }
 
+.link-on-dark-background {
+  color: var(--color-generic-yellow-light);
+}
+
 .header {
+  position: relative;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
-  background: var(--color-generic-blue-light);
+  background: var(--color-generic-blue-dark);
   font-family: var(--font-primary);
   font-size: var(--text-size-md);
 }
@@ -99,16 +106,12 @@ a {
   transform: rotateZ(20deg);
 }
 
-/* this one need to delete */
-.smthingforex {
-  height: 900px;
-}
-
 footer {
   width: 100%;
   background: var(--color-generic-yellow-light);
   margin: 0 auto;
   text-align: center;
+  z-index: 100;
 }
 
 .footer__social {
@@ -121,7 +124,6 @@ footer {
   margin: var(--space-lg);
 }
 
-/* */
 footer ul {
   display: inline-flex;
   position: relative;
