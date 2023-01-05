@@ -136,11 +136,11 @@
   };
 
   const statNames = Object.keys(target.stats);
-  const toggleCircleAnimation = (
+  const toggleCircleAnimation = ({
     style,
     isUnset = true,
-    indexOfCircle = null
-  ) => {
+    indexOfCircle = null,
+  }) => {
     const updateStyle = (styleToUpdate, styleValue) =>
       isUnset
         ? (style[styleToUpdate] = '')
@@ -153,14 +153,23 @@
     updateStyle('stroke', STATS_COLORS[indexOfCircle]);
   };
 
-  const updateCirclesAnimation = () => {
+  const clearCirclesAnimation = () => {
+    let i = 0;
+    while (i < NUMBER_OF_STAT_CIRCLES) {
+      document
+        .getElementsByClassName(`circle--${statNames[i]}`)[0]
+        .removeAttribute('style');
+      i++;
+    }
+  };
+
+  const addCirclesAnimation = () => {
     let i = 0;
     while (i < NUMBER_OF_STAT_CIRCLES) {
       const style = document.getElementsByClassName(
         `circle--${statNames[i]}`
       )[0].style;
-      toggleCircleAnimation(style);
-      toggleCircleAnimation(style, false, i);
+      toggleCircleAnimation({ style, isUnset: false, indexOfCircle: i });
       i++;
     }
   };
@@ -174,9 +183,10 @@
       updateDescription(additionalInfo);
       updateProperties(pokemonFetchedInfo, additionalInfo);
       updateTypes(pokemonFetchedInfo);
-      updateStats(pokemonFetchedInfo);
+      clearCirclesAnimation();
       target.pokemon.style.visibility = 'visible';
-      requestAnimationFrame(() => updateCirclesAnimation()); //?
+      updateStats(pokemonFetchedInfo);
+      addCirclesAnimation();
     } catch (e) {
       console.log(`Can not search a pokemon ${e}`);
     }
@@ -199,13 +209,14 @@
 
     for (let i = 0; i < circles.length; i++) {
       new IntersectionObserver((entries) => {
-        console.log(entries); // to see if observer works
+        // Chromium has a bug with svg and intersection observer
+        // https://bugs.chromium.org/p/chromium/issues/detail?id=963246
         const style = entries[0].target.style;
         if (entries[0].isIntersecting) {
-          toggleCircleAnimation(style, false, i);
+          toggleCircleAnimation({ style, isUnset: false, indexOfCircle: i });
           return;
         }
-        toggleCircleAnimation(style);
+        toggleCircleAnimation({ style });
       }, options).observe(circles[i]);
     }
   })();
