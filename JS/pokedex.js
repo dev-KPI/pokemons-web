@@ -40,6 +40,8 @@
     },
   };
 
+  let pokemon__names = ['Pikachu', 'Raichu'];
+
   const target = Object.fromEntries(
     Object.entries(targetData).map(([key, value]) =>
       typeof value === 'object'
@@ -55,6 +57,39 @@
         : [key, document.getElementsByClassName(value)[0]]
     )
   );
+
+  /////////////////////////////////////////////////////////////////////////
+  const sorted__pokemon__names = pokemon__names.sort();
+  //console.log(sorted__pokemon__names);
+  removeElements();
+  target.searchInput.addEventListener('keyup', (e) => {
+    for (const i of pokemon__names) {
+      if (
+        i.toLowerCase().startsWith(target.value.toLowerCase()) &&
+        target.value != ''
+      ) {
+        const listItem = document.createElement('li');
+        listItem.classList.add('list__items');
+        listItem.style.cursor = 'pointer';
+        listItem.setAttribute('oneclick', "displayNames('" + i + "')");
+        let word = '<b>' + i.substring(0, target.value.length) + '</b>';
+        word = +i.substring(target.value.length);
+        //console.log(word);
+        listItem.innerHTML = word;
+        document.querySelector('.list').appendChild(listItem);
+      }
+    }
+  });
+
+  function displayNames(value) {
+    target.value = value;
+  }
+  function removeElements() {
+    let items = document.querySelectorAll('.list-items');
+    items.forEach((item) => {
+      item.remove();
+    });
+  }
 
   const getResource = async (idOrName, getFrom) => {
     const type = typeof idOrName;
