@@ -40,8 +40,6 @@
     },
   };
 
-  let pokemon__names = ['Pikachu', 'Raichu'];
-
   const target = Object.fromEntries(
     Object.entries(targetData).map(([key, value]) =>
       typeof value === 'object'
@@ -59,33 +57,40 @@
   );
 
   /////////////////////////////////////////////////////////////////////////
+  let pokemon__names = ['Archi', 'Midix', 'Aara', 'Zorua'];
   const sorted__pokemon__names = pokemon__names.sort();
-  //console.log(sorted__pokemon__names);
-  removeElements();
+  console.log(sorted__pokemon__names);
+
   target.searchInput.addEventListener('keyup', (e) => {
-    for (const i of pokemon__names) {
+    for (const i of sorted__pokemon__names) {
       if (
-        i.toLowerCase().startsWith(target.value.toLowerCase()) &&
-        target.value != ''
+        i.toLowerCase().startsWith(target.searchInput.value.toLowerCase()) &&
+        target.searchInput.value != ''
       ) {
-        const listItem = document.createElement('li');
-        listItem.classList.add('list__items');
-        listItem.style.cursor = 'pointer';
-        listItem.setAttribute('oneclick', "displayNames('" + i + "')");
-        let word = '<b>' + i.substring(0, target.value.length) + '</b>';
-        word = +i.substring(target.value.length);
+        removeElements();
+        const list = document.createElement('li');
+        list.classList.add('list-item');
+        list.style.cursor = 'pointer';
+        list.setAttribute('onclick', "displayNames('" + i + "')");
+        let word =
+          '<b>' + i.substring(0, target.searchInput.value.length) + '</b>';
+        word += i.substring(target.searchInput.value.length);
+
         //console.log(word);
-        listItem.innerHTML = word;
-        document.querySelector('.list').appendChild(listItem);
+        list.innerHTML = word;
+        document.querySelector('.list').appendChild(list);
+      } else {
+        removeElements();
       }
     }
   });
 
   function displayNames(value) {
-    target.value = value;
+    target.searchInput.value = value;
   }
   function removeElements() {
-    let items = document.querySelectorAll('.list-items');
+    let items = document.querySelectorAll('.list-item');
+    //console.log(items);
     items.forEach((item) => {
       item.remove();
     });
